@@ -1,0 +1,67 @@
+<div class="text-center my5">
+  <h2>List Account</h2>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <!--    <div class="col-md-2"></div>-->
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <table mat-table [dataSource]="users" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>#</th>
+          <td mat-cell *matCellDef="let element">{{element.id}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>User Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+          <td mat-cell *matCellDef="let element">{{ element.roles[0].name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="locked">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="element.locked">
+              Locked
+            </span>
+            <span *ngIf="!element.locked">
+              UnLock
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef style="text-align: center">Actions</th>
+          <td mat-cell *matCellDef="let element" style="text-align: center">
+            <a mat-raised-button style="margin-left: 1%"
+               routerLink="/admin/users/{{element.id}}">Info</a>
+            <a mat-raised-button color="warn" style="margin-left: 1%"
+               (click)="clickMethod(element.id)">Delete</a>
+            <a *ngIf="!element.locked" mat-raised-button color="warn" (click)="clickBlock(element.id,true)"
+               style="margin-left: 1%">Block</a>
+            <a *ngIf="element.locked" mat-raised-button color="primary" (click)="clickBlock(element.id,false)"
+               style="margin-left: 1%">UnBlock</a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>

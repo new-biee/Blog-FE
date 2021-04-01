@@ -1,0 +1,37 @@
+<div class="text-center">
+  <h2 class="m-5">Detail User</h2>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-4">
+          <div style="width: 100%">
+            <img src="{{user.imageUrls}}" alt="Avatar" style="width: 100%">
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              <b>Username</b>: {{user.username}}
+            </div>
+            <div class="col-md-6">
+              <b>Name</b>: {{user.name}}
+            </div>
+          </div>
+          <div>
+            <b>Email</b>: {{user.email}}
+          </div>
+          <div>
+            <b>Phone name</b>: {{user.phoneNumber}}
+          </div>
+          <div>
+            <b>Role</b>: {{user.roles[0].name}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+</div>
